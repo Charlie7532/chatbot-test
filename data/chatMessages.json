@@ -4,7 +4,11 @@
     "content": [
       {
         "type": "text",
-        "value": "Hi there! 👋 How can I assist you today?"
+        "value": "Hello! 🌟 I'm your friendly Canva assistant!"
+      },
+      {
+        "type": "text",
+        "value": "Ready to create stunning designs? I can help you optimize templates, navigate features, and answer any questions about editing and billing. Let's get started!"
       }
     ]
   },
@@ -13,7 +17,7 @@
     "content": [
       {
         "type": "text",
-        "value": "hola"
+        "value": "Hola como estas?"
       }
     ]
   },
@@ -31,25 +35,7 @@
     "content": [
       {
         "type": "text",
-        "value": "hola como estas?"
-      }
-    ]
-  },
-  {
-    "type": "bot",
-    "content": [
-      {
-        "type": "text",
-        "value": "Esta es una respuesta generada por un robot..."
-      }
-    ]
-  },
-  {
-    "type": "user",
-    "content": [
-      {
-        "type": "text",
-        "value": "hola"
+        "value": "esto es una prueba inicial"
       }
     ]
   },

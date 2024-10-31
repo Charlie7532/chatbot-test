@@ -17,6 +17,14 @@ const ChatbotPanel: React.FC<ChatbotPanelProps> = ({ trigger }) => {
         setIsLoading(true);
 
         let messageToSend = message;
+
+        const response1 = await fetch('/api/chat/user', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ message }),
+        });
         
         setMessage('');
         trigger();
@@ -25,7 +33,7 @@ const ChatbotPanel: React.FC<ChatbotPanelProps> = ({ trigger }) => {
 
         // Send the message to the API
 
-        const response = await fetch('/api/chat', {
+        const response = await fetch('/api/chat/bot', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
