@@ -4,11 +4,73 @@
     "content": [
       {
         "type": "text",
-        "value": "Hello! 🌟 I'm your friendly Canva assistant!"
+        "value": "Welcome back! 😊 Ready to create some amazing designs?"
+      }
+    ]
+  },
+  {
+    "type": "user",
+    "content": [
+      {
+        "type": "text",
+        "value": "what's your name "
+      }
+    ]
+  },
+  {
+    "type": "bot",
+    "content": [
+      {
+        "type": "text",
+        "value": "Error generating response. Please try again later."
+      }
+    ]
+  },
+  {
+    "type": "user",
+    "content": [
+      {
+        "type": "text",
+        "value": "hi"
+      }
+    ]
+  },
+  {
+    "type": "bot",
+    "content": [
+      {
+        "type": "text",
+        "value": "Error generating response. Please try again later."
+      }
+    ]
+  },
+  {
+    "type": "user",
+    "content": [
+      {
+        "type": "text",
+        "value": "hi introduce yourself"
+      }
+    ]
+  },
+  {
+    "type": "bot",
+    "content": [
+      {
+        "type": "text",
+        "value": "Hello! I am an AI assistant designed to provide information, answer questions, and help you with a wide range of tasks. My knowledge is based on data up to October 2023, and I aim to assist you as best as I can."
       },
       {
         "type": "text",
-        "value": "Ready to create stunning designs? I can help you optimize templates, navigate features, and answer any questions about editing and billing. Let's get started!"
+        "value": "I can help with various topics including technology, science, history, and more. You can ask me to explain concepts, provide summaries, or even help with planning and organizing tasks."
+      },
+      {
+        "type": "image",
+        "value": "https://cdn.photographylife.com/wp-content/uploads/2014/06/Nikon-D810-Image-Sample-6.jpg"
+      },
+      {
+        "type": "text",
+        "value": "Feel free to ask me anything, and I'll do my best to provide a helpful and informative response. Whether you need a quick fact or a detailed explanation, I'm here to assist!"
       }
     ]
   },
@@ -17,7 +79,7 @@
     "content": [
       {
         "type": "text",
-        "value": "Hola como estas?"
+        "value": "."
       }
     ]
   },
@@ -26,7 +88,19 @@
     "content": [
       {
         "type": "text",
-        "value": "Esta es una respuesta generada por un robot..."
+        "value": "Welcome to our interactive guide! In this comprehensive document, we aim to provide you with detailed insights and practical advice on a variety of topics. Whether you're looking to expand your knowledge or seek specific information, you'll find what you need in the following sections."
+      },
+      {
+        "type": "text",
+        "value": "Our mission is to ensure that you leave with a better understanding and clearer perspective on the subject matter. We believe that learning should be an engaging and enjoyable experience, which is why we've included various types of content to keep you informed and entertained."
+      },
+      {
+        "type": "image",
+        "value": "https://s3.amazonaws.com/creare-websites-wpms-legacy/wp-content/uploads/sites/32/2016/03/01200959/canstockphoto22402523-arcos-creator.com_-1024x1024.jpg"
+      },
+      {
+        "type": "text",
+        "value": "Feel free to explore each section at your own pace. If you have any questions or need further clarification, don't hesitate to reach out. We're here to help you make the most of this resource and are committed to your success and satisfaction."
       }
     ]
   },
@@ -35,7 +109,7 @@
     "content": [
       {
         "type": "text",
-        "value": "esto es una prueba inicial"
+        "value": "give me a short answer "
       }
     ]
   },
@@ -44,7 +118,103 @@
     "content": [
       {
         "type": "text",
-        "value": "Esta es una respuesta generada por un robot..."
+        "value": "This format supports combining text and images to create a structured response."
+      },
+      {
+        "type": "text",
+        "value": "Start by writing text paragraphs, followed by an image with a URL, if applicable."
+      },
+      {
+        "type": "image",
+        "src": "exampleimageurl.png"
+      },
+      {
+        "type": "text",
+        "value": "Conclude with additional text to provide a comprehensive explanation or summary."
+      }
+    ]
+  },
+  {
+    "type": "user",
+    "content": [
+      {
+        "type": "text",
+        "value": "give me a short answer with one image "
+      }
+    ]
+  },
+  {
+    "type": "bot",
+    "content": [
+      {
+        "type": "text",
+        "value": "Artificial intelligence (AI) refers to the simulation of human intelligence in machines that are programmed to think and learn like humans."
+      },
+      {
+        "type": "text",
+        "value": "AI has various applications across different industries, such as healthcare, finance, and transportation, where it helps to process large amounts of data and provide insights that would be difficult for humans to achieve manually."
+      },
+      {
+        "type": "image",
+        "value": "https://s3.amazonaws.com/creare-websites-wpms-legacy/wp-content/uploads/sites/32/2016/03/01200959/canstockphoto22402523-arcos-creator.com_-1024x1024.jpg"
+      },
+      {
+        "type": "text",
+        "value": "As AI technology continues to advance, it brings both opportunities and challenges, including ethical considerations around privacy and job displacement."
+      }
+    ]
+  },
+  {
+    "type": "user",
+    "content": [
+      {
+        "type": "text",
+        "value": "hi what is your name ?"
+      }
+    ]
+  },
+  {
+    "type": "bot",
+    "content": [
+      {
+        "type": "text",
+        "value": "Error generating response. Please try again later."
+      }
+    ]
+  },
+  {
+    "type": "user",
+    "content": [
+      {
+        "type": "text",
+        "value": "hi"
+      }
+    ]
+  },
+  {
+    "type": "bot",
+    "content": [
+      {
+        "type": "text",
+        "value": "Error generating response. Please try again later."
+      }
+    ]
+  },
+  {
+    "type": "user",
+    "content": [
+      {
+        "type": "text",
+        "value": "hi"
+      }
+    ]
+  },
+  {
+    "type": "bot",
+    "content": [
+      {
+        "type": "text",
+        "value": "Error generating response. Please try again later."
       }
     ]
   }
