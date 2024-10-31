@@ -217,5 +217,164 @@
         "value": "Error generating response. Please try again later."
       }
     ]
+  },
+  {
+    "type": "user",
+    "content": [
+      {
+        "type": "text",
+        "value": "hi"
+      }
+    ]
+  },
+  {
+    "type": "user",
+    "content": [
+      {
+        "type": "text",
+        "value": "hi"
+      }
+    ]
+  },
+  {
+    "type": "bot",
+    "content": [
+      {
+        "type": "text",
+        "value": "Hello! How can I assist you today?"
+      },
+      {
+        "type": "text",
+        "value": "If you have any questions or need information, feel free to ask!"
+      },
+      {
+        "type": "image",
+        "value": "greeting_image.png"
+      },
+      {
+        "type": "text",
+        "value": "I'm here to help with anything you need."
+      }
+    ]
+  },
+  {
+    "type": "user",
+    "content": [
+      {
+        "type": "text",
+        "value": "hey "
+      }
+    ]
+  },
+  {
+    "type": "bot",
+    "content": [
+      {
+        "type": "text",
+        "value": "Hello! How can I assist you today?"
+      }
+    ]
+  },
+  {
+    "type": "user",
+    "content": [
+      {
+        "type": "text",
+        "value": "give me an image link "
+      }
+    ]
+  },
+  {
+    "type": "bot",
+    "content": [
+      {
+        "type": "text",
+        "value": "Here is an image link for you."
+      },
+      {
+        "type": "image",
+        "value": "https://example.com/image.png"
+      }
+    ]
+  },
+  {
+    "type": "user",
+    "content": [
+      {
+        "type": "text",
+        "value": "hi what is your name ?"
+      }
+    ]
+  },
+  {
+    "type": "bot",
+    "content": [
+      {
+        "type": "text",
+        "value": "Error generating response. Please try again later."
+      }
+    ]
+  },
+  {
+    "type": "user",
+    "content": [
+      {
+        "type": "text",
+        "value": "what is your name ?"
+      }
+    ]
+  },
+  {
+    "type": "bot",
+    "content": [
+      {
+        "type": "text",
+        "value": "Error generating response. Please try again later."
+      }
+    ]
+  },
+  {
+    "type": "user",
+    "content": [
+      {
+        "type": "text",
+        "value": "what is your name?"
+      }
+    ]
+  },
+  {
+    "type": "bot",
+    "content": [
+      {
+        "type": "text",
+        "value": "I am an AI assistant created to help you with your queries."
+      },
+      {
+        "type": "text",
+        "value": "I don't have a personal name like a human, but you can call me Assistant."
+      }
+    ]
+  },
+  {
+    "type": "user",
+    "content": [
+      {
+        "type": "text",
+        "value": "what is your name?"
+      }
+    ]
+  },
+  {
+    "type": "bot",
+    "content": [
+      {
+        "type": "text",
+        "value": "My name is Templi, your AI assistant designed to help optimize Canva templates."
+      },
+      {
+        "type": "text",
+        "value": "I'm here to provide tips and suggestions to enhance your design projects."
+      }
+    ]
   }
 ]

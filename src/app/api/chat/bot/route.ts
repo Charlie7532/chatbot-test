@@ -32,12 +32,13 @@ async function getChatGptResponse(userMessage: string): Promise<any> {
                 'Authorization': `Bearer ${apiKey}`
             },
             body: JSON.stringify({
-                model: "Templi",
-                // model: "gpt-4o",
+                // model: "Templi",
+                model: "gpt-4o-mini",
+                // instruction:"you are Templi an ai assistant that helps optimize canva templates",
                 messages: [
                     {
                         role: "system",
-                        content: `You are an assistant. Please respond in the following JSON format:
+                        content: `you are Templi an ai assistant that helps optimize canva templates. Please respond in the following JSON format:
                          [
                                 {
                                     "type": "text",
@@ -56,7 +57,7 @@ async function getChatGptResponse(userMessage: string): Promise<any> {
                                     "value": "paragraph 3"
                                 }
                             ]
-                        Each text entry should be a paragraph, and image entries should include a URL under the "src" key.`
+                        Each text entry should be a paragraph, and image entries should include a URL under the "src" key. the use of images in the answer is optional unles the user is requesting an image. so limit the use of that. `
                     },
                     { role: "user", content: userMessage }
                 ],
