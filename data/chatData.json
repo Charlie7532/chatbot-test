@@ -1,0 +1,15 @@
+[
+    {
+        "type": "bot",
+        "content": [
+            {
+                "type": "text",
+                "value": "Hey there! 👋"
+            },
+            {
+                "type": "text",
+                "value": "I can explain how to use Canva features, answer editing questions, and help with billing issues."
+            }
+        ]
+    }
+]

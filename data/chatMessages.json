@@ -1,0 +1,65 @@
+[
+  {
+    "type": "bot",
+    "content": [
+      {
+        "type": "text",
+        "value": "Hi there! 👋 How can I assist you today?"
+      }
+    ]
+  },
+  {
+    "type": "user",
+    "content": [
+      {
+        "type": "text",
+        "value": "hola"
+      }
+    ]
+  },
+  {
+    "type": "bot",
+    "content": [
+      {
+        "type": "text",
+        "value": "Esta es una respuesta generada por un robot..."
+      }
+    ]
+  },
+  {
+    "type": "user",
+    "content": [
+      {
+        "type": "text",
+        "value": "hola como estas?"
+      }
+    ]
+  },
+  {
+    "type": "bot",
+    "content": [
+      {
+        "type": "text",
+        "value": "Esta es una respuesta generada por un robot..."
+      }
+    ]
+  },
+  {
+    "type": "user",
+    "content": [
+      {
+        "type": "text",
+        "value": "hola"
+      }
+    ]
+  },
+  {
+    "type": "bot",
+    "content": [
+      {
+        "type": "text",
+        "value": "Esta es una respuesta generada por un robot..."
+      }
+    ]
+  }
+]

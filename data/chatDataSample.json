@@ -1,0 +1,50 @@
+[
+    {
+        "type": "bot",
+        "content": [
+            {
+                "type": "text",
+                "value": "Hey there! 👋"
+            },
+            {
+                "type": "text",
+                "value": "I can explain how to use Canva features, answer editing questions, and help with billing issues."
+            }
+        ]
+    },
+    {
+        "type": "user",
+        "content": [
+            {
+                "type": "text",
+                "value": "Hi, I want to create a custom template. How can I get started?"
+            }
+        ]
+    },
+    {
+        "type": "bot",
+        "content": [
+            {
+                "type": "text",
+                "value": "HOLA HOLA"
+            },
+            {
+                "type": "image",
+                "value": "https://s3.amazonaws.com/creare-websites-wpms-legacy/wp-content/uploads/sites/32/2016/03/01200959/canstockphoto22402523-arcos-creator.com_-1024x1024.jpg"
+            },
+            {
+                "type": "text",
+                "value": "This is another test"
+            }
+        ]
+    },
+    {
+        "type": "user",
+        "content": [
+            {
+                "type": "text",
+                "value": "Hola mundo feliz"
+            }
+        ]
+    }
+]

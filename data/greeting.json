@@ -1,0 +1,42 @@
+[
+    {
+        "type": "bot",
+        "content": [
+            {
+                "type": "text",
+                "value": "Hello! 🌟 I'm your friendly Canva assistant!"
+            },
+            {
+                "type": "text",
+                "value": "Ready to create stunning designs? I can help you optimize templates, navigate features, and answer any questions about editing and billing. Let's get started!"
+            }
+        ]
+    },
+    {
+        "type": "bot",
+        "content": [
+            {
+                "type": "text",
+                "value": "Hello! 🌟 I'm your friendly Canva assistant!"
+            }
+        ]
+    },
+    {
+        "type": "bot",
+        "content": [
+            {
+                "type": "text",
+                "value": "Hi there! 👋 How can I assist you today?"
+            }
+        ]
+    },
+    {
+        "type": "bot",
+        "content": [
+            {
+                "type": "text",
+                "value": "Welcome back! 😊 Ready to create some amazing designs?"
+            }
+        ]
+    }
+]
