@@ -32,7 +32,7 @@ const ResetChatButton: React.FC<ResetChatButtonProps> = ({ onReset }) => {
 
     return (
         <button
-            className="reset-chat-button text-black"
+            className="reset-chat-button text-black text-xl"
             onClick={handleResetClick}
             aria-label="Reset chat"
         >

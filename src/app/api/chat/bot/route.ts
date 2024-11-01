@@ -33,7 +33,7 @@ async function getChatGptResponse(userMessage: string): Promise<any> {
             },
             body: JSON.stringify({
                 // model: "Templi",
-                model: "gpt-4o-mini",
+                model: "gpt-4o",
                 // instruction:"you are Templi an ai assistant that helps optimize canva templates",
                 messages: [
                     {
