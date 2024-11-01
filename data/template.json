@@ -1,0 +1,38 @@
+[
+    {
+        "id": "0",
+        "url": "https://www.canva.com/design/DAGVFOokAGg/3qePUKipSj6IoyM89NGS-g/edit?utm_content=DAGVFOokAGg&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
+        "image": "https://www.connetweb.com/wp-content/uploads/2021/06/canstockphoto22402523-arcos-creator.com_-1024x1024-1.jpg",
+        "tags": ["Original", "template"],
+        "description": "Colorfull, Kitchen, Supplies",
+        "style": "Original",
+        "theme": "Original"
+    },
+    {
+        "id": "1",
+        "url": "https://www.canva.com/design/DAGVFa8tQ1Q/zzLah4WzZsG8pkoJfYhMcQ/edit?utm_content=DAGVFa8tQ1Q&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
+        "image": "https://www.connetweb.com/wp-content/uploads/2021/06/canstockphoto22402523-arcos-creator.com_-1024x1024-1.jpg",
+        "tags": ["Bold", "Image", "Enaging", "Brown"],
+        "description": "Less collorfull Sober and Keeing The Same Idea",
+        "style": "Bold",
+        "theme": "Beige Kitchen logo"
+    },
+    {
+        "id": "2",
+        "url": "https://www.canva.com/design/DAGVFA09K5g/boIMic0D3GDtVHR-MBbTqw/edit?utm_content=DAGVFA09K5g&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
+        "image": "https://www.connetweb.com/wp-content/uploads/2021/06/canstockphoto22402523-arcos-creator.com_-1024x1024-1.jpg",
+        "tags": ["Pub", "beer", "neutral", "white background"],
+        "description": "Change the bakground, Add Beer, for an old pub",
+        "style": "Appealing",
+        "theme": "Beige pub"
+    },
+    {
+        "id": "3",
+        "url": "https://www.canva.com/design/DAGVFX88fdc/JzqwFjFLCXpLjTxBLbf1Ow/edit?utm_content=DAGVFX88fdc&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
+        "image": "https://www.connetweb.com/wp-content/uploads/2021/06/canstockphoto22402523-arcos-creator.com_-1024x1024-1.jpg",
+        "tags": ["Simple", "Modern", "Basic", "Grey"],
+        "description": "Change the colors to grey palette in a really simple way ",
+        "style": "Minimalist",
+        "theme": "Black and white beer"
+    }
+]

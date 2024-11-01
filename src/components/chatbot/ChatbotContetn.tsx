@@ -119,6 +119,7 @@ const ChatbotContent: React.FC = () => {
                                                 {msg.content.map((item: any, itemIndex: any) => {
                                                     if (item.type === "text") return <p key={itemIndex}>{item.value}</p>;
                                                     if (item.type === "image") return <img key={itemIndex} className="rounded-xl" src={item.value} alt={`bot image ${itemIndex}`} />;
+                                                    if (item.type === "link") return <p><a key={itemIndex} href={item.value} className="text-blue-500" target="_blank">{item.value}</a></p>;
                                                     return null;
                                                 })}
                                             </MessageFromBot>
