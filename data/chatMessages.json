@@ -4,16 +4,11 @@
     "content": [
       {
         "type": "text",
-        "value": "Welcome back! 😊 Ready to create some amazing designs?"
-      }
-    ]
-  },
-  {
-    "type": "user",
-    "content": [
+        "value": "Hello! 🌟 I'm your friendly Canva assistant!"
+      },
       {
         "type": "text",
-        "value": "hola"
+        "value": "Ready to create stunning designs? I can help you optimize templates, navigate features, and answer any questions about editing and billing. Let's get started!"
       }
     ]
   },
@@ -22,16 +17,7 @@
     "content": [
       {
         "type": "text",
-        "value": "Error generating response. Please try again later."
-      }
-    ]
-  },
-  {
-    "type": "user",
-    "content": [
-      {
-        "type": "text",
-        "value": "hi"
+        "value": "Hello! I'm Templi, your AI assistant for optimizing Canva templates. How can I assist you today?"
       }
     ]
   },
@@ -40,16 +26,7 @@
     "content": [
       {
         "type": "text",
-        "value": "Error generating response. Please try again later."
-      }
-    ]
-  },
-  {
-    "type": "user",
-    "content": [
-      {
-        "type": "text",
-        "value": "hola "
+        "value": "Hello! I'm here to help you optimize your Canva templates. Whether you need tips on design layout, color schemes, or typography, feel free to ask."
       }
     ]
   },
@@ -58,7 +35,83 @@
     "content": [
       {
         "type": "text",
-        "value": "¡Hola! Soy Templi, tu asistente de optimización de plantillas de Canva. Estoy aquí para ayudarte a mejorar tus diseños y hacerlos más efectivos. ¿En qué puedo asistirte hoy?"
+        "value": "Hello! How can I assist you with optimizing your Canva templates today?"
+      }
+    ]
+  },
+  {
+    "type": "bot",
+    "content": [
+      {
+        "type": "text",
+        "value": "¡Hola! Estoy aquí para ayudarte a optimizar tus plantillas de Canva. ¿En qué puedo asistirte hoy?"
+      }
+    ]
+  },
+  {
+    "type": "bot",
+    "content": [
+      {
+        "type": "text",
+        "value": "¡Hola! Estoy aquí para ayudarte a optimizar tus plantillas de Canva. ¿En qué puedo asistirte hoy?"
+      }
+    ]
+  },
+  {
+    "type": "bot",
+    "content": [
+      {
+        "type": "text",
+        "value": "¡Hola! Estoy aquí para ayudarte a optimizar tus plantillas de Canva. ¿En qué puedo asistirte hoy?"
+      }
+    ]
+  },
+  {
+    "type": "bot",
+    "content": [
+      {
+        "type": "text",
+        "value": "¡Hola! ¿En qué puedo ayudarte hoy con tus plantillas de Canva?"
+      }
+    ]
+  },
+  {
+    "type": "bot",
+    "content": [
+      {
+        "type": "text",
+        "value": "¡Hola! ¿En qué puedo ayudarte hoy con tus plantillas de Canva?"
+      }
+    ]
+  },
+  {
+    "type": "bot",
+    "content": [
+      {
+        "type": "text",
+        "value": "¡Hola! ¿En qué puedo ayudarte hoy con tus plantillas de Canva?"
+      }
+    ]
+  },
+  {
+    "type": "bot",
+    "content": [
+      {
+        "type": "text",
+        "value": "¡Hola! Soy Templi, tu asistente de optimización de plantillas de Canva. Estoy aquí para ayudarte a mejorar tus diseños y hacer que se vean increíbles."
+      },
+      {
+        "type": "text",
+        "value": "Si tienes alguna pregunta o necesitas ayuda con un diseño específico, no dudes en decírmelo. Estoy aquí para asistirte en lo que necesites."
+      }
+    ]
+  },
+  {
+    "type": "bot",
+    "content": [
+      {
+        "type": "text",
+        "value": "¡Hola! Soy Templi, tu asistente para optimizar plantillas de Canva. ¿En qué puedo ayudarte hoy?"
       }
     ]
   }

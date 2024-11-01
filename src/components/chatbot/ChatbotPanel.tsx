@@ -4,10 +4,11 @@ import React, { useState } from 'react';
 import VoiceBtn from './VoiceBtn';
 
 interface ChatbotPanelProps {
+    chatId: string | undefined;
     trigger: () => void;
 }
 
-const ChatbotPanel: React.FC<ChatbotPanelProps> = ({ trigger }) => {
+const ChatbotPanel: React.FC<ChatbotPanelProps> = ({ trigger, chatId }) => {
     const [message, setMessage] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
@@ -23,9 +24,9 @@ const ChatbotPanel: React.FC<ChatbotPanelProps> = ({ trigger }) => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ message }),
+            body: JSON.stringify({ message, chatId }),
         });
-        
+
         setMessage('');
         trigger();
 
@@ -38,7 +39,7 @@ const ChatbotPanel: React.FC<ChatbotPanelProps> = ({ trigger }) => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ message }),
+            body: JSON.stringify({ message, chatId }),
         });
 
         if (response.ok) {
@@ -46,6 +47,8 @@ const ChatbotPanel: React.FC<ChatbotPanelProps> = ({ trigger }) => {
         } else {
             console.error('Failed to send message');
         }
+
+        setIsLoading(false);
     };
 
     return (
@@ -54,17 +57,21 @@ const ChatbotPanel: React.FC<ChatbotPanelProps> = ({ trigger }) => {
                 <div className="yYw_FA pr-5">
                     <div className="uLt0uw">
                         <div className="Wrk03w KbQ1bQ c7zhBg s5hqTw">
+                            {isLoading ?
+                                <div className="s_JGcg fFOiLQ eoXdOg tMP70Q">
+                                    Loading...
+                                </div> :
+                                <input
+                                    className="s_JGcg fFOiLQ eoXdOg tMP70Q"
+                                    dir="auto"
+                                    type="text"
+                                    maxLength={800}
+                                    placeholder="How else can I help?"
+                                    aria-label="Ask Canva Assistant for help"
+                                    value={message}
+                                    onChange={(e) => setMessage(e.target.value)}
+                                />}
 
-                            <input
-                                className="s_JGcg fFOiLQ eoXdOg tMP70Q"
-                                dir="auto"
-                                type="text"
-                                maxLength={800}
-                                placeholder="How else can I help?"
-                                aria-label="Ask Canva Assistant for help"
-                                value={message}
-                                onChange={(e) => setMessage(e.target.value)}
-                            />
                             <VoiceBtn />
                         </div>
                     </div>

@@ -2,7 +2,7 @@
 import React from 'react';
 
 interface ResetChatButtonProps {
-    onReset?: () => void; // Make onReset optional
+    onReset?: (chatId: string) => void; // Make onReset optional
 }
 
 const ResetChatButton: React.FC<ResetChatButtonProps> = ({ onReset }) => {
@@ -17,8 +17,9 @@ const ResetChatButton: React.FC<ResetChatButtonProps> = ({ onReset }) => {
 
             if (response.ok) {
                 const data = await response.json();
+
                 if (onReset) {
-                    onReset(); // Call the provided callback if it exists
+                    onReset(data.chatId); // Call the provided callback if it exists
                 }
                 // Optionally, handle the greeting message here
                 console.log(data.greeting);

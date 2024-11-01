@@ -7,16 +7,46 @@ import MessageFromBot from "./Messages/MessageFromBot";
 import chatData from '@/../data/chatMessages.json';
 import ResetChatButton from "./ResetChatButton";
 
+
 const ChatbotContent: React.FC = () => {
+    const [chatId, setChatId] = useState<string>();
     const [chatMessages, setChatMessages] = useState<any[]>([]);
     const chatContainerRef = useRef<HTMLDivElement>(null); // Ref for the chat container
     const scrollAnchorRef = useRef<HTMLDivElement>(null); // Ref for scrolling to the bottom
 
+    const addMessage = (newMessage: any) => {
+        setChatMessages(prevMessages => [...prevMessages, newMessage]);
+    };
+
+
+    const getNewChat = async () => {
+        try {
+            const response = await fetch('/api/resetChat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                setChatId(data.chatId);
+            } else {
+                console.error('Failed to reset chat');
+            }
+        } catch (error) {
+            console.error('Error resetting chat:', error);
+        }
+    }
+
     const fetchChatMessages = async () => {
         try {
-            const response = await fetch("/api/chat");
+            const response = await fetch(`/api/chat?id=${chatId}`);
+            if (!response.ok) {
+                throw new Error(`Error fetching chat messages: ${response.statusText}`);
+            }
             const data = await response.json();
-            setChatMessages(data);
+            setChatMessages(data.messages);
         } catch (error) {
             console.error("Error fetching chat messages:", error);
         }
@@ -24,8 +54,20 @@ const ChatbotContent: React.FC = () => {
 
     // Initial fetch for chat data
     useEffect(() => {
-        setChatMessages(chatData);
-    }, []);
+        console.log("Re-rendering page...")
+        const initializeChat = async () => {
+            console.log("chatId: ", chatId);
+            if (!chatId) {
+                console.log("Creating a new chat...")
+                getNewChat();
+            }
+            setTimeout(async () => {
+                await fetchChatMessages();
+            }, 500);
+        };
+
+        initializeChat();
+    }, [chatId]);
 
     // Scroll to the bottom whenever chatMessages change
     useEffect(() => {
@@ -35,11 +77,25 @@ const ChatbotContent: React.FC = () => {
     }, [chatMessages]);
 
     const triggerUpdate = () => {
+
+        const lastMessage = chatMessages[chatMessages.length - 1];
+        console.log("Last msg", lastMessage.type);
+        addMessage(
+            {
+                type: lastMessage?.type === "bot" ? "user" : "bot",
+                content: [
+                    {
+                        "type": "text",
+                        "value": "..."
+                    }
+                ]
+            })
         fetchChatMessages();
     };
 
 
-    const handleChatReset = () => {
+    const handleChatReset = (id: string) => {
+        setChatId(id)
         setTimeout(async () => {
             await fetchChatMessages();
         }, 500);
@@ -90,8 +146,10 @@ const ChatbotContent: React.FC = () => {
                     </div>
                 </div>
             </div>
-            <ResetChatButton onReset={handleChatReset} />
-            <ChatbotPanel trigger={triggerUpdate} />
+
+            <ResetChatButton onReset={(id) => handleChatReset(id)} />
+            <ChatbotPanel trigger={triggerUpdate} chatId={chatId} />
+
         </div>
     );
 };

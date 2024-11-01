@@ -44,8 +44,6 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
         // Insert the new chat object into the collection
         const result = await collection.insertOne({ messages: newChat });
 
-        console.log("New Chat with ID: ", result.insertedId);
-
         // Return the ID of the newly created chat object
         return new NextResponse(JSON.stringify({ success: true, chatId: result.insertedId }), { status: 201 });
     } catch (error) {

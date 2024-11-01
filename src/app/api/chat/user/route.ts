@@ -1,74 +1,61 @@
-import fs from 'fs';
-import path from 'path';
+import { MongoClient, ObjectId } from 'mongodb';
+import { NextRequest, NextResponse } from 'next/server';
 
 // Define the structure for a chat message
 interface ChatMessage {
     type: 'user' | 'bot';
+    timestamp: number;
     content: Array<{ type: 'text' | 'image'; value: string }>;
 }
 
-// Path to the chat messages JSON file
-const filePath = path.join(process.cwd(), 'data', 'chatMessages.json');
-
-// Ensure the directory and file are created if they don't exist
-if (!fs.existsSync(path.dirname(filePath))) {
-    fs.mkdirSync(path.dirname(filePath), { recursive: true });
+// Define the structure for the chat document
+interface ChatDocument {
+    _id?: ObjectId;
+    messages: ChatMessage[];
 }
 
-// Function to call ChatGPT API (mocked for this example)
-async function getChatGptResponse(userMessage: string): Promise<string> {
-    // Simulating an API call with a delay
-    await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate network delay
-    return "Esta es una respuesta generada por un robot..."; // Mock response from ChatGPT
-}
+// MongoDB setup
+const client = new MongoClient(process.env.MONGODB_URI as string);
+const dbName = 'canvaChat';
+const collectionName = 'chats';
 
-// POST method for adding a new message
-export async function POST(req: Request): Promise<Response> {
+// POST method for adding a new message by chat ID
+export async function POST(req: NextRequest): Promise<NextResponse> {
     try {
-        const { message }: { message: string } = await req.json();
+        // Get the message and chat ID from the request
+        const { message, chatId }: { message: string; chatId: string } = await req.json();
 
-        let chatMessages: ChatMessage[] = [];
+        // Connect to MongoDB
+        await client.connect();
+        const db = client.db(dbName);
+        const collection = db.collection<ChatDocument>(collectionName); // Specify ChatDocument type
 
-        // Read existing chat messages if the file exists
-        if (fs.existsSync(filePath)) {
-            const jsonData = fs.readFileSync(filePath, 'utf-8');
-            chatMessages = JSON.parse(jsonData) as ChatMessage[];
+        // Create the new message object
+        const newMessage: ChatMessage = {
+            type: 'user',
+            timestamp: Date.now(),
+            content: [{ type: 'text', value: message }],
+        };
+
+        // Update the chat document by adding the new message to the messages array
+        const result = await collection.updateOne(
+            { _id: new ObjectId(chatId) },
+            { $push: { messages: newMessage as any } }, // Use `as any` for compatibility
+            { upsert: true }
+        );
+
+        // Check if the update was successful
+        if (result.matchedCount === 0) {
+            return new NextResponse(JSON.stringify({ success: false, error: 'Chat not found or message not added.' }), { status: 404 });
         }
 
-        // Add the new user message
-        chatMessages.push({
-            type: 'user',
-            content: [{ type: 'text', value: message }],
-        });
-
-        // Write updated chat messages to the file
-        fs.writeFileSync(filePath, JSON.stringify(chatMessages, null, 2), 'utf-8');
-
-        return new Response(JSON.stringify({ success: true }), { status: 200 });
+        return new NextResponse(JSON.stringify({ success: true }), { status: 200 });
     } catch (error) {
         console.error('Error processing POST request:', error);
-        return new Response(JSON.stringify({ success: false, error: 'Internal Server Error' }), {
+        return new NextResponse(JSON.stringify({ success: false, error: 'Internal Server Error' }), {
             status: 500,
         });
-    }
-}
-
-// GET method for retrieving messages
-export async function GET(): Promise<Response> {
-    try {
-        let chatMessages: ChatMessage[] = [];
-
-        // If file does not exist, return an empty array
-        if (fs.existsSync(filePath)) {
-            const jsonData = fs.readFileSync(filePath, 'utf-8');
-            chatMessages = JSON.parse(jsonData) as ChatMessage[];
-        }
-
-        return new Response(JSON.stringify(chatMessages), { status: 200 });
-    } catch (error) {
-        console.error('Error processing GET request:', error);
-        return new Response(JSON.stringify({ success: false, error: 'Internal Server Error' }), {
-            status: 500,
-        });
+    } finally {
+        await client.close();
     }
 }

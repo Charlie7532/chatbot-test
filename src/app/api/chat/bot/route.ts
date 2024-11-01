@@ -1,139 +1,66 @@
-import fs from 'fs';
-import path from 'path';
+import { MongoClient, ObjectId } from 'mongodb';
+import { NextRequest, NextResponse } from 'next/server';
+import { getChatGptResponse } from './getAssistantAnswer';
 
 // Define the structure for a chat message
 interface ChatMessage {
     type: 'user' | 'bot';
+    timestamp: number;
     content: Array<{ type: 'text' | 'image'; value: string }>;
 }
 
-// Path to the chat messages JSON file
-const filePath = path.join(process.cwd(), 'data', 'chatMessages.json');
-
-// Ensure the directory and file are created if they don't exist
-if (!fs.existsSync(path.dirname(filePath))) {
-    fs.mkdirSync(path.dirname(filePath), { recursive: true });
+// Define the structure for the chat document
+interface ChatDocument {
+    _id?: ObjectId;
+    messages: ChatMessage[];
 }
 
-// Function to call ChatGPT API (mocked for this example)
-async function getChatGptResponse(userMessage: string): Promise<any> {
-    const apiKey = process.env.OPENAI_API_KEY; // Store API key securely in environment variables
-    const apiUrl = 'https://api.openai.com/v1/chat/completions';
+// MongoDB setup
+const client = new MongoClient(process.env.MONGODB_URI as string);
+const dbName = 'canvaChat';
+const collectionName = 'chats';
 
-    if (!apiKey) {
-        throw new Error("Missing OpenAI API Key");
-    }
-
+// POST method for adding a new message by chat ID
+export async function POST(req: NextRequest): Promise<NextResponse> {
     try {
-        const response = await fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${apiKey}`
-            },
-            body: JSON.stringify({
-                // model: "Templi",
-                model: "gpt-4o",
-                // instruction:"you are Templi an ai assistant that helps optimize canva templates",
-                messages: [
-                    {
-                        role: "system",
-                        content: `you are Templi an ai assistant that helps optimize canva templates. Please respond in the following JSON format:
-                         [
-                                {
-                                    "type": "text",
-                                    "value": "paragraph 1"
-                                },
-                                {
-                                    "type": "text",
-                                    "value": "paragraph 2"
-                                },
-                                {
-                                    "type": "image",
-                                    "value": "imageurl.png"
-                                },
-                                {
-                                    "type": "text",
-                                    "value": "paragraph 3"
-                                }
-                            ]
-                        Each text entry should be a paragraph, and image entries should include a URL under the "src" key. the use of images in the answer is optional unles the user is requesting an image. so limit the use of that. `
-                    },
-                    { role: "user", content: userMessage }
-                ],
-                max_tokens: 300,
-                temperature: 0.7
-            })
-        });
+        // Get the message and chat ID from the request
+        const { message, chatId }: { message: string; chatId: string } = await req.json();
 
-
-        if (!response.ok) {
-            const errorMessage = await response.text();
-            throw new Error(`OpenAI API Error: ${errorMessage}`);
-        }
-
-        const data = await response.json();
-        const botMessage = JSON.parse(data.choices[0]?.message?.content) || [{ type: "text", value: "Error: No response content" }];
-
-        console.log("Bot answer: ", JSON.parse(data.choices[0]?.message.content));
-
-        return botMessage;
-    } catch (error) {
-        console.error("Error fetching ChatGPT response:", error);
-        return [{ type: "text", value: "Error generating response. Please try again later." }];
-    }
-}
-
-
-// POST method for adding a new message
-export async function POST(req: Request): Promise<Response> {
-    try {
-        const { message }: { message: string } = await req.json();
-
-        let chatMessages: ChatMessage[] = [];
-
-        // Read existing chat messages if the file exists
-        if (fs.existsSync(filePath)) {
-            const jsonData = fs.readFileSync(filePath, 'utf-8');
-            chatMessages = JSON.parse(jsonData) as ChatMessage[];
-        }
-
-
-        // Call ChatGPT to get the bot response
         const botResponse = await getChatGptResponse(message);
-        chatMessages.push({
+
+        // Connect to MongoDB
+        await client.connect();
+        const db = client.db(dbName);
+        const collection = db.collection<ChatDocument>(collectionName); // Specify ChatDocument type
+
+        // Create the new message object
+        const newMessage: ChatMessage = {
             type: 'bot',
+            timestamp: Date.now(),
             content: botResponse,
-        });
+        };
 
-        // Write updated chat messages to the file
-        fs.writeFileSync(filePath, JSON.stringify(chatMessages, null, 2), 'utf-8');
+        console.log("message: ", newMessage);
 
-        return new Response(JSON.stringify({ success: true }), { status: 200 });
+        // Update the chat document by adding the new message to the messages array
+        const result = await collection.updateOne(
+            { _id: new ObjectId(chatId) },
+            { $push: { messages: newMessage as any } }, // Use `as any` for compatibility
+            { upsert: true }
+        );
+
+        // Check if the update was successful
+        if (result.matchedCount === 0) {
+            return new NextResponse(JSON.stringify({ success: false, error: 'Chat not found or message not added.' }), { status: 404 });
+        }
+
+        return new NextResponse(JSON.stringify({ success: true }), { status: 200 });
     } catch (error) {
         console.error('Error processing POST request:', error);
-        return new Response(JSON.stringify({ success: false, error: 'Internal Server Error' }), {
+        return new NextResponse(JSON.stringify({ success: false, error: 'Internal Server Error' }), {
             status: 500,
         });
-    }
-}
-
-// GET method for retrieving messages
-export async function GET(): Promise<Response> {
-    try {
-        let chatMessages: ChatMessage[] = [];
-
-        // If file does not exist, return an empty array
-        if (fs.existsSync(filePath)) {
-            const jsonData = fs.readFileSync(filePath, 'utf-8');
-            chatMessages = JSON.parse(jsonData) as ChatMessage[];
-        }
-
-        return new Response(JSON.stringify(chatMessages), { status: 200 });
-    } catch (error) {
-        console.error('Error processing GET request:', error);
-        return new Response(JSON.stringify({ success: false, error: 'Internal Server Error' }), {
-            status: 500,
-        });
+    } finally {
+        await client.close();
     }
 }
